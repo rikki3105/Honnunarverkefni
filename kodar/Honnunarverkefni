@@ -35,12 +35,14 @@ fjoldiMaelinga = 2	# hvað ætlum við að safna mörgum gildum
 PWM_OFF = 0             # the PWM_duty_cycle 0%
 PWM_MAX = 100           # the PWM_duty_cycle 100%
 
-#### Setjum Duty Cycle ####
+#### Setjum Duty Cycle1 ####
 
 	duty_cycle1 = 10
 		setFanSpeed(duty_cycle1)
 		time.sleep(8)
 	print("Duty cycle: 10%)
+	picking = [hitastig]
+	maelingar.append(picking)
 
 ###### Hitanemi ######
 
@@ -66,15 +68,14 @@ while (teljari < 11):
     teljari = teljari + 1
     
     
-    
-    
-    
     #### Setjum Duty Cycle2 ####
 
 	duty_cycle2 = 90
 		setFanSpeed(duty_cycle2)
 		time.sleep(8)
 	print("Duty cycle: 90%")
+	picking = [hitastig]
+	maelingar.append(picking)
 
 ###### Hitanemi ######
 
