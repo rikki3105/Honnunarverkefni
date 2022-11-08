@@ -1,0 +1,6 @@
+import digitalio
+import board
+import time
+from board import *
+import glob
+import adafruit_dht
