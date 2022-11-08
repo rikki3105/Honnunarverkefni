@@ -23,4 +23,5 @@ try:
 	GPIO.output(RELAY_FAN_GPIO_PIN,GPIO.LOW) # Turn the FAN ON
 	print("FAN IS ON")
 	time.sleep(5)
-    
+  except KeyboardInterrupt:
+	GPIO.cleanup() # resets all GPIO ports used by this function
