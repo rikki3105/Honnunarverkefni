@@ -26,6 +26,15 @@ try:
 	time.sleep(5)
   except KeyboardInterrupt:
 	GPIO.cleanup() # resets all GPIO ports used by this function
+	
+	
+#Breytur
+maelingar = []         	# Notað til að safna gildum
+fjoldiMaelinga = 5	# hvað ætlum við að safna mörgum gildum
+
+PWM_OFF = 0             # the PWM_duty_cycle 0%
+PWM_MAX = 100           # the PWM_duty_cycle 100%
+
 #### Setjum Duty Cycle ####
 
 	duty_cycle1 = 10
