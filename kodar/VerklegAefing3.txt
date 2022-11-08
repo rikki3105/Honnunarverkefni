@@ -1,0 +1,127 @@
+# # # # # # # # # # # # # # # # # # # # # # # # # # # #
+#!/usr/bin/python -u
+
+#!/usr/bin/python -u
+import RPi.GPIO as GPIO
+import time
+import os
+
+###### Kveikjum á viftu ######
+
+# Configuration
+RELAY_FAN_GPIO_PIN = 26 # BCM pin used to turn RELAY for FAN ON/OFF
+
+
+try:
+	GPIO.setwarnings(False)
+	GPIO.setmode(GPIO.BCM)
+  # Setting up relay for FAN
+	GPIO.setup(RELAY_FAN_GPIO_PIN, GPIO.OUT, initial=GPIO.HIGH) # HIGH MEANS RELAY IS OFF
+
+	counter= 0
+	while (counter < 1):
+		GPIO.output(RELAY_FAN_GPIO_PIN,GPIO.LOW) # Turn the FAN ON
+		print("FAN IS ON")
+		time.sleep(5)
+		#GPIO.output(RELAY_FAN_GPIO_PIN,GPIO.HIGH) # Turn the FAN OFF
+		#print("FAN OFF")
+		#time.sleep(10)
+		counter += 1
+
+# trap a CTRL+C keyboard interrupt
+except KeyboardInterrupt:
+	GPIO.cleanup() # resets all GPIO ports used by this function
+
+# # # # # # # # # # # # # # # # # # # # # # # # # # # #
+
+###### Setjum tíðnina og mælum hraðann ######
+
+#!/usr/bin/python -u
+
+import RPi.GPIO as GPIO
+import time
+import datetime
+
+# Configuration
+FAN_GPIO_PIN = 20       # BCM pin used to drive PWM fan
+PWM_FREQ = 25000       # [Hz] 25kHz for PWM control
+print("PWM_FREQ is: {:.2f}".format(PWM_FREQ))
+
+#Hall_sensor
+TACH_GPIO_PIN_Hall = 21      # BCM pin for reading the tachometer
+count_time = 2          # seconds for counting sensor changes
+
+#Breytur
+maelingar = []         	# Notað til að safna gildum
+fjoldiMaelinga = 5	# hvað ætlum við að safna mörgum gildum
+
+PWM_OFF = 0             # the PWM_duty_cycle 0%
+PWM_MAX = 100           # the PWM_duty_cycle 100%
+
+#### define functions for PWM ####
+
+# Set fan speed
+def setFanSpeed(PWM_duty_cycle):
+	fan.start(PWM_duty_cycle)    # set the speed according to the PWM duty cycle
+	return()
+
+#### define functions for Hall sensor ####
+def tach_count(sec,GPIO_PIN):
+	duration = datetime.timedelta(seconds=sec)      # measure for one second
+	end_time = (datetime.datetime.now()+duration)   # set the time when to stop
+	current_pin_status = GPIO.input(GPIO_PIN)
+	last_pin_status = 2
+	counter = 0
+	while ( datetime.datetime.now() < end_time):
+		current_pin_status=GPIO.input(GPIO_PIN)
+		if (current_pin_status != last_pin_status):
+#      print(current_pin_status)
+			last_pin_status = current_pin_status
+			counter += 1
+	return (counter)
+
+################################################
+try:
+	GPIO.setwarnings(False)
+	GPIO.setmode(GPIO.BCM)
+  
+# PWM used to control the fan's speed
+	GPIO.setup(FAN_GPIO_PIN, GPIO.OUT, initial=GPIO.LOW)
+	fan = GPIO.PWM(FAN_GPIO_PIN,PWM_FREQ)
+	setFanSpeed(PWM_OFF)
+# tachometer - from a hall sensor located in the fan
+	GPIO.setup(TACH_GPIO_PIN_Hall, GPIO.IN, pull_up_down=GPIO.PUD_UP)
+
+#Mælum bæði duty cycle og Hall sensor og skrifum í skrá
+	
+	counter= 0
+
+	with open(os.getcwd() + '/maelingar.txt', 'w') as f:
+		while (counter < 5):
+			duty_cycle = PWM_MAX*counter/4
+			setFanSpeed(duty_cycle)
+			time.sleep(8)
+			tach_hall_rpm = float(tach_count(count_time,TACH_GPIO_PIN_Hall))/count_time/2/2*60			
+			print("Duty cycle:: {:.2f}, Hall RPM:: {:.2f}".format(duty_cycle, tach_hall_rpm))
+			picking = [duty_cycle, tach_hall_rpm]
+			maelingar.append(picking)		# Söfnum saman í fylki
+			picking_str = "{:.2f}, {:.2f}".format(maelingar[counter][0], maelingar[counter][1])
+			f.write(str(picking_str + '\n'))
+			f.flush()
+			counter += 1
+			
+	
+	
+	GPIO.cleanup()
+	print("FAN IS OFF")
+
+
+# trap a CTRL+C keyboard interrupt
+except KeyboardInterrupt:
+	setFanSpeed(FAN_OFF)
+	GPIO.cleanup() # resets all GPIO ports used by this function
+
+
+
+
+
