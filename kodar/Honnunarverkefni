@@ -29,22 +29,6 @@ try:
 
 
 ###### Hitanemi ######
-LDR_GPIO_PIN = board.D6
-
-# configure
-LDR = digitalio.DigitalInOut(LDR_GPIO_PIN)
-LDR.direction = digitalio.Direction.INPUT
-# Solid State Relay (SSR)
-SSR = digitalio.DigitalInOut(D23)
-SSR.direction = digitalio.Direction.OUTPUT
-
-
-YELLOW_GPIO_PIN = board.D17
-led_yellow = digitalio.DigitalInOut(YELLOW_GPIO_PIN)
-led_yellow.direction = digitalio.Direction.OUTPUT
-GREEN_GPIO_PIN = board.D27
-led_green = digitalio.DigitalInOut(GREEN_GPIO_PIN)
-led_green.direction = digitalio.Direction.OUTPUT
 
 dhtDevice = adafruit_dht.DHT22(board.D5)
 
@@ -62,15 +46,6 @@ while (teljari < 11):
                 hitastig , rakastig, deltaT, teljari
             )
         )
-        if hitastig < hitastig+0.5:
-          led_yellow.value = True
-          time.sleep(0.1)
-          SSR.value = False
-
-        elif hitastig > hitastig-0.5: 
-          led_yellow.value = True
-          time.sleep(0.1)
-          SSR.value = False
 
     except RuntimeError as error:
         # Villur koma reglulega upp - getur verið erfitt að lesa gildi nemans, bara reyna aftur
