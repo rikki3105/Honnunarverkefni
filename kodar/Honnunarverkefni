@@ -28,3 +28,5 @@ try:
 	GPIO.cleanup() # resets all GPIO ports used by this function
 
 
+PWM_OFF = 0             # the PWM_duty_cycle 0%
+PWM_MAX = 100           # the PWM_duty_cycle 100%
