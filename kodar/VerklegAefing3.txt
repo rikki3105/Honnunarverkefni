@@ -121,6 +121,7 @@ except KeyboardInterrupt:
 	setFanSpeed(FAN_OFF)
 	GPIO.cleanup() # resets all GPIO ports used by this function
 
+#######
 
 
 
