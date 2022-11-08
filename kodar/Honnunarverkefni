@@ -26,3 +26,5 @@ try:
 	time.sleep(5)
   except KeyboardInterrupt:
 	GPIO.cleanup() # resets all GPIO ports used by this function
+
+
