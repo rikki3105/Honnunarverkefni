@@ -99,3 +99,8 @@ while (teljari < 11):
 
     time.sleep(2.0)
     teljari = teljari + 1
+	      
+	      
+#### B - LIÐUR #######
+oskgildi = sum(maelingar)/2
+	     print("Hitastig mitt á milli gilda: " + oskgildi)
