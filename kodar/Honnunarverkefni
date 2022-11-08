@@ -37,13 +37,10 @@ try:
 dhtDevice = adafruit_dht.DHT22(board.D5)
 
 teljari = 1
-upphafshitastig = dhtDevice.temperature # Upphafshitastig
-deltaT = 0 # breyta til að fylgjast með breyting á hitastigi
 
 while (teljari < 11):
     try:
         hitastig = dhtDevice.temperature
-        deltaT = hitastig - upphafshitastig
         print("Hitastig: {:.1f} C  mæling nr. {}".format(hitastig, teljari))
 
     except RuntimeError as error:
