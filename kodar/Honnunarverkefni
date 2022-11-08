@@ -26,6 +26,8 @@ try:
 	time.sleep(5)
   except KeyboardInterrupt:
 	GPIO.cleanup() # resets all GPIO ports used by this function
+
+
 #### Setjum Duty Cycle ####
 
 	duty_cycle = PWM_MAX*counter/4
@@ -35,15 +37,7 @@ try:
 ###### Hitanemi ######
 
 dhtDevice = adafruit_dht.DHT22(board.D5)
-
-teljari = 1
-upphafshitastig = dhtDevice.temperature # Upphafshitastig
-deltaT = 0 # breyta til að fylgjast með breyting á hitastigi
-
-while (teljari < 11):
-    try:
         hitastig = dhtDevice.temperature
-        deltaT = hitastig - upphafshitastig
         print("Hitastig: {:.1f} C    Rakastig: {}%  -- deltaT {:.1f}  mæling nr. {}".format(hitastig , rakastig, deltaT, teljari))
 
     except RuntimeError as error:
