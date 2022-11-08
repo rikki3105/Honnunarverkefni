@@ -30,7 +30,7 @@ try:
 	
 #Breytur
 maelingar = []         	# Notað til að safna gildum
-fjoldiMaelinga = 5	# hvað ætlum við að safna mörgum gildum
+fjoldiMaelinga = 2	# hvað ætlum við að safna mörgum gildum
 
 PWM_OFF = 0             # the PWM_duty_cycle 0%
 PWM_MAX = 100           # the PWM_duty_cycle 100%
