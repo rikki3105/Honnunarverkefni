@@ -6,3 +6,21 @@ import glob
 import adafruit_dht
 import RPi.GPIO as GPIO
 import os
+
+
+###### Kveikjum á viftu ######
+
+# Configuration
+RELAY_FAN_GPIO_PIN = 26 # BCM pin used to turn RELAY for FAN ON/OFF
+
+
+try:
+	GPIO.setwarnings(False)
+	GPIO.setmode(GPIO.BCM)
+  # Setting up relay for FAN
+	GPIO.setup(RELAY_FAN_GPIO_PIN, GPIO.OUT, initial=GPIO.HIGH) # HIGH MEANS RELAY IS OFF
+
+	GPIO.output(RELAY_FAN_GPIO_PIN,GPIO.LOW) # Turn the FAN ON
+	print("FAN IS ON")
+	time.sleep(5)
+    
