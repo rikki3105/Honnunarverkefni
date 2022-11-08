@@ -61,7 +61,7 @@ while (teljari < 11):
     
     #### Setjum Duty Cycle2 ####
 
-	duty_cycle2 = 10
+	duty_cycle2 = 90
 		setFanSpeed(duty_cycle2)
 		time.sleep(8)
 
