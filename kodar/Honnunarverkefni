@@ -34,3 +34,8 @@ fjoldiMaelinga = 2	# hvað ætlum við að safna mörgum gildum
 
 PWM_OFF = 0             # the PWM_duty_cycle 0%
 PWM_MAX = 100           # the PWM_duty_cycle 100%
+
+# Set fan speed
+def setFanSpeed(PWM_duty_cycle):
+	fan.start(PWM_duty_cycle)    # set the speed according to the PWM duty cycle
+	return()
