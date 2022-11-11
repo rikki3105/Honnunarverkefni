@@ -1,3 +1,4 @@
+!/usr/bin/python -u
 import digitalio
 import board
 import time
