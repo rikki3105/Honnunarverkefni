@@ -59,6 +59,8 @@ for i in listi:
     	temp_string = read_temp_raw()
 		temp_c = float(temp_string) / 1000.0
 		print(temp_c)
+		gildi = []
+		gildi.append(temp_c)
     	time.sleep(10)
     	teljari = teljari + 1
 
