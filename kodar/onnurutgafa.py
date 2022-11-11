@@ -41,7 +41,8 @@ device_file = device_folder + '/temperature'
 #### Setjum Duty Cycle ####
 
 dutycyclegildi = [10,90]
-
+def read_temp_raw():
+	
 for i in listi:
 		setFanSpeed(i)
 		time.sleep(30)
@@ -49,7 +50,7 @@ for i in listi:
 
 ###### Hitanemi ######
 
-	def read_temp_raw():
+	
     	f = open(device_file, 'r')
     	line = f.read()
     	f.close()
