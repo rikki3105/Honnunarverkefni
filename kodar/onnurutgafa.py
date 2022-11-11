@@ -45,7 +45,7 @@ dutycyclegildi = [10,90]
 for i in listi:
 		setFanSpeed(i)
 		time.sleep(30)
-	print("Duty cycle: " i "%")
+	print("Duty cycle: " + i + "%")
 
 ###### Hitanemi ######
 
