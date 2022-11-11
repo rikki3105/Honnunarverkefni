@@ -66,5 +66,5 @@ medaltal90 = sum(gildi90)/10
 
 
 #### B - LIÐUR #######
-oskgildi = sum(maelingar)/2
-	     print("Hitastig mitt á milli gilda: " + oskgildi)
+midgildi = (medaltal10 + medaltal90)/2
+	     print("Hitastig mitt á milli gilda: " + midgildi)
