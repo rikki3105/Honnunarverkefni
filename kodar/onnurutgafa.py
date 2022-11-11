@@ -24,7 +24,7 @@ try:
 	GPIO.output(RELAY_FAN_GPIO_PIN,GPIO.LOW) # Turn the FAN ON
 	print("FAN IS ON")
 	time.sleep(5)
- except KeyboardInterrupt:
+except KeyboardInterrupt:
 	GPIO.cleanup() # resets all GPIO ports used by this function
 
 
@@ -41,32 +41,25 @@ device_file = device_folder + '/temperature'
 #### Setjum Duty Cycle ####
 
 dutycyclegildi = [10,90]
-def read_temp_raw():
-	
+
+
 for i in listi:
-		setFanSpeed(i)
-		time.sleep(30)
-	print("Duty cycle: " + i + "%")
-
+	setFanSpeed(i)
+	time.sleep(30)
+	print("Duty cycle: " + i + " 10%")
 ###### Hitanemi ######
-
-	
-    	f = open(device_file, 'r')
-    	line = f.read()
-    	f.close()
-    	return line
-
-	while (teljari < 11):
-    	temp_string = read_temp_raw()
+	def read_temp_raw():
+		temp_string = read_temp_raw()
 		temp_c = float(temp_string) / 1000.0
-		print(temp_c)
-		gildi = []
-		gildi.append(temp_c)
-    	time.sleep(10)
-    	teljari = teljari + 1
+		while (teljari < 11):
+				print(temp_c)
+				gildi = []
+				gildi.append(temp_c)
+    			time.sleep(10)
+    			teljari = teljari + 1
 
 	## finna meðaltal af mælingunum tíu
-	gildi = sum(hitastig)/10
+			gildi = sum(hitastig)/10
 
 	## setja meðaltalið í lista með append
 
