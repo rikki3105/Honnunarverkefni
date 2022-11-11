@@ -31,6 +31,11 @@ except KeyboardInterrupt:
 PWM_OFF = 0             # the PWM_duty_cycle 0%
 PWM_MAX = 100           # the PWM_duty_cycle 100%
 
+# Set fan speed
+def setFanSpeed(PWM_duty_cycle):
+	fan.start(PWM_duty_cycle)    # set the speed according to the PWM duty cycle
+	return()
+
 base_dir = '/sys/bus/w1/devices/'
 device_folder = glob.glob(base_dir + '28*')[0]
 device_file = device_folder + '/temperature'
