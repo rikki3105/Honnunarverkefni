@@ -48,22 +48,21 @@ for i in listi:
 		temp_string = read_temp_raw()
 		temp_c = float(temp_string) / 1000.0
 		while (teljari < 11):
-				print(temp_c)
+			print(temp_c)
 			if i == 0:
 				gildi10 = []
 				gildi10.append(temp_c)
 			else:
 				gildi90 = []
 				gildi90.append(temp_c)
-    			time.sleep(10)
-    			teljari = teljari + 1
+			time.sleep(10)
+    		teljari = teljari + 1
 
 	## finna meðaltal af mælingunum tíu
-			medaltal10 = sum(gildi10)/10
-			medaltal90 = sum(gildi90)/10
+medaltal10 = sum(gildi10)/10
+medaltal90 = sum(gildi90)/10
 
 	## setja meðaltalið í lista með append
-i ++
 
 
 #### B - LIÐUR #######
