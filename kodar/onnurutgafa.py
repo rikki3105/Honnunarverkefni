@@ -62,7 +62,6 @@ for i in listi:
 medaltal10 = sum(gildi10)/10
 medaltal90 = sum(gildi90)/10
 
-	## setja meðaltalið í lista með append
 
 
 #### B - LIÐUR #######
