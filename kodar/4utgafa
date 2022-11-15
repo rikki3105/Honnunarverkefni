@@ -68,12 +68,6 @@ try:
 
 #### Setjum Duty Cycle ####
 
-
-	#for i in dutycyclegildi:
-		#setFanSpeed(i)
-		#time.sleep(2)
-		#print("Duty cycle: " + str(i))
-
 ###### Hitanemi ######
 
 #Mælum hitastig###
@@ -81,43 +75,49 @@ try:
 
 #Hitasitg m.v. 10% duty gildi
 
+	gildi10 = []
+	teljari = 0
+	duty_cycle = 10
+	print("Duty cycle: " + str(duty_cycle) + "%")
 
-
-gildi10 = []
-teljari = 0	
-duty_cycle = 10
-while (teljari < 10):
-	
-	setFanSpeed(duty_cycle)
-	temp_string = read_temp_raw()
-	temp_c = float(temp_string) / 1000.0
-	print(temp_c)
-	gildi10.append(temp_c)
-	time.sleep(2)
-	teljari = teljari + 1
+	while (teljari < 10):
+		setFanSpeed(duty_cycle)
+		temp_string = read_temp_raw()
+		temp_c = float(temp_string) / 1000.0
+		print(temp_c)
+		gildi10.append(temp_c)
+		time.sleep(2)
+		teljari = teljari + 1
 
 	medaltal10 = sum(gildi10)/10
-		print("Meðaltal 10: " + str(medaltal10))
+	print("Meðaltal 10: " + str(medaltal10))
 
 
 #Hitastig m.v. 90% duty gildi
 
-gildi90 = []
-teljari1 = 0
-duty_cycle = 90
+	gildi90 = []
+	teljari1 = 0
+	duty_cycle = 90
+	print("Duty cycle: " + str(duty_cycle) + "%")
 
-while (teljari1 < 10):
-	setFanSpeed(duty_cycle)
-	temp_string = read_temp_raw()
-	temp_c = float(temp_string) / 1000.0
-	print(temp_c)
-	gildi90.append(temp_c)
-	time.sleep(2)
-	teljari1 = teljari1 + 1
+	while (teljari1 < 10):
+		setFanSpeed(duty_cycle)
+		temp_string = read_temp_raw()
+		temp_c = float(temp_string) / 1000.0
+		print(temp_c)
+		gildi90.append(temp_c)
+		time.sleep(2)
+		teljari1 = teljari1 + 1
 
 	medaltal90 = sum(gildi90)/10
-		print("Meðaltal 90: " + str(medaltal90))
+	print("Meðaltal 90: " + str(medaltal90))
 
+	raunhitastig = (medaltal10 + medaltal90)/2
+	print("Miðgildið er " + str(raunhitastig))
+
+	GPIO.cleanup()
+	print("FAN IS OFF")
 
 except KeyboardInterrupt:
 	setFanSpeed(FAN_OFF)
+	GPIO.cleanup() # resets all GPIO ports used by this function
