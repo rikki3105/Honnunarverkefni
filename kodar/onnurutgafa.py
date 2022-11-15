@@ -17,11 +17,13 @@ FAN_GPIO_PIN = 20
 RELAY_FAN_GPIO_PIN = 26 # BCM pin used to turn RELAY for FAN ON/OFF
 ##PWM_duty_cycle = 10
 
-def dutycyclevifta():
 
-	def setFanSpeed(PWM_duty_cycle):
-		fan.start(PWM_duty_cycle)
-		return()
+PWM_OFF = 0             # the PWM_duty_cycle 0%
+PWM_MAX = 100           # the PWM_duty_cycle 100%
+
+def setFanSpeed(PWM_duty_cycle):
+	fan.start(PWM_duty_cycle)
+	return()
 
 	try:
 		GPIO.setwarnings(False)
@@ -36,8 +38,7 @@ def dutycyclevifta():
 			GPIO.cleanup() # resets all GPIO ports used by this function
 
 
-PWM_OFF = 0             # the PWM_duty_cycle 0%
-PWM_MAX = 100           # the PWM_duty_cycle 100%
+
 
 
 
