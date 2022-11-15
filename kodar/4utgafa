@@ -22,7 +22,7 @@ PWM_FREQ = 125        # [Hz] 25kHz for PWM control
 
 PWM_OFF = 0             # the PWM_duty_cycle 0%
 PWM_MAX = 100           # the PWM_duty_cycle 100%
-dutycyclegildi = [10, 90]
+#dutycyclegildi = [10, 90]
 
 base_dir = '/sys/bus/w1/devices/'
 device_folder = glob.glob(base_dir + '28*')[0]
@@ -69,45 +69,55 @@ try:
 #### Setjum Duty Cycle ####
 
 
-	for i in dutycyclegildi:
-		setFanSpeed(i)
-		time.sleep(2)
-		print("Duty cycle: " + str(i))
+	#for i in dutycyclegildi:
+		#setFanSpeed(i)
+		#time.sleep(2)
+		#print("Duty cycle: " + str(i))
 
 ###### Hitanemi ######
 
+#Mælum hitastig###
 
-#Mælum hitastig
 
-		gildi10 = []
-		gildi90 = []
-		teljari = 0
-		while (teljari < 10):
-			temp_string = read_temp_raw()
-			temp_c = float(temp_string) / 1000.0
-			print(temp_c)
-			if i == 0:
-				gildi10.append(temp_c)
-				print("hæ")
-				time.sleep(2)
-			else:
-				gildi90.append(temp_c)
-				time.sleep(2)
-				teljari = teljari + 1
-
-		print("Gildi10:" + str(gildi10))
+#Hitasitg m.v. 10% duty gildi
 
 
 
-		medaltal10 = sum(gildi10)/10
-		medaltal90 = sum(gildi90)/10
+gildi10 = []
+teljari = 0	
+duty_cycle = 10
+while (teljari < 10):
+	
+	setFanSpeed(duty_cycle)
+	temp_string = read_temp_raw()
+	temp_c = float(temp_string) / 1000.0
+	print(temp_c)
+	gildi10.append(temp_c)
+	time.sleep(2)
+	teljari = teljari + 1
+
+	medaltal10 = sum(gildi10)/10
+		print("Meðaltal 10: " + str(medaltal10))
 
 
+#Hitastig m.v. 90% duty gildi
 
-	i += 1
+gildi90 = []
+teljari1 = 0
+duty_cycle = 90
 
-	print("Meðaltal 10: " + str(medaltal10))
-	print("Meðaltal 90: " + str(medaltal90))
+while (teljari1 < 10):
+	setFanSpeed(duty_cycle)
+	temp_string = read_temp_raw()
+	temp_c = float(temp_string) / 1000.0
+	print(temp_c)
+	gildi90.append(temp_c)
+	time.sleep(2)
+	teljari1 = teljari1 + 1
+
+	medaltal90 = sum(gildi90)/10
+		print("Meðaltal 90: " + str(medaltal90))
+
 
 except KeyboardInterrupt:
 	setFanSpeed(FAN_OFF)
