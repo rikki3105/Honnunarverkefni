@@ -70,7 +70,7 @@ try:
 
 	for i in dutycyclegildi:
 		setFanSpeed(i)
-		time.sleep(10)
+		time.sleep(2)
 		print("Duty cycle: " + str(i))
 
 ###### Hitanemi ######
@@ -80,26 +80,32 @@ try:
 
 		gildi10 = []
 		gildi90 = []
-		teljari = 1
-		while (teljari < 11):
+		teljari = 0
+		while (teljari < 10):
 			temp_string = read_temp_raw()
 			temp_c = float(temp_string) / 1000.0
 			print(temp_c)
 			if i == 0:
 				gildi10.append(temp_c)
+				print("hæ")
 			else:
 				gildi90.append(temp_c)
 				time.sleep(2)
 				teljari = teljari + 1
 
+		print("Gildi10:" + str(gildi10))
+
+
+
 		medaltal10 = sum(gildi10)/10
 		medaltal90 = sum(gildi90)/10
 
-		print(medaltal10)
-		print(medaltal90)
+
 
 	i += 1
 
+	print("Meðaltal 10: " + str(medaltal10))
+	print("Meðaltal 90: " + str(medaltal90))
 
 except KeyboardInterrupt:
 	setFanSpeed(FAN_OFF)
