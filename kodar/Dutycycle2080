@@ -70,13 +70,13 @@ try:
 	setFanSpeed(20)
 	time.sleep(60)
 
-
-	setFanSpeed(80)
-	print("Duty cycle: " + 80
+	duty_cycle = 80
+	setFanSpeed(duty_cycle)
+	print("Duty cycle: " + str(duty_cycle))
 
 ###### Hitanemi ######
+
 	teljari = 0
-#Mælum hitastig
 	while (teljari < 15):
 		temp_string = read_temp_raw()
 		temp_c = float(temp_string) / 1000.0
