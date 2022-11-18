@@ -41,7 +41,7 @@ try:
 
 	GPIO.output(RELAY_FAN_GPIO_PIN,GPIO.LOW) # Turn the FAN ON
 	print("FAN IS ON")
-	time.sleep(30)
+	time.sleep(3)
 
 	GPIO.output(RELAY_HEATER_FAN_GPIO_PIN, GPIO.LOW)
 	print("HEATER ON")
@@ -72,9 +72,10 @@ try:
 	teljari = 0
 	duty_cycle = 10
 	print("Duty cycle: " + str(duty_cycle) + "%")
+	setFanSpeed(duty_cycle)
+	time.sleep(30)
 
 	while (teljari < 10):
-		setFanSpeed(duty_cycle)
 		temp_string = read_temp_raw()
 		temp_c = float(temp_string) / 1000.0
 		print(temp_c)
@@ -92,9 +93,10 @@ try:
 	teljari1 = 0
 	duty_cycle = 90
 	print("Duty cycle: " + str(duty_cycle) + "%")
+	setFanSpeed(duty_cycle)
+	time.sleep(30)
 
 	while (teljari1 < 10):
-		setFanSpeed(duty_cycle)
 		temp_string = read_temp_raw()
 		temp_c = float(temp_string) / 1000.0
 		print(temp_c)
@@ -108,18 +110,21 @@ try:
 	oskgildi = (medaltal10 + medaltal90)/2
 	print("Miðgildið er " + str(oskgildi))
 
+	setFanSpeed(50)
+	time.sleep(15)
+
 	currenttimi = time.time()
 	timi = 0
 	while (timi <= 30):
 		timi = time.time() - currenttimi
 		print("timi = " + str(timi))
-		k = 8
+		k = 20
 		e = oskgildi - temp_c
 		setFanSpeed(k*e)
 		temp_string = read_temp_raw()
 		temp_c = float(temp_string) / 1000.0
 		print(temp_c)
-		time.sleep(3)
+
 
 	GPIO.cleanup()
 	print("FAN IS OFF")
