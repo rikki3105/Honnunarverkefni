@@ -114,6 +114,16 @@ try:
 
 	raunhitastig = (medaltal10 + medaltal90)/2
 	print("Miðgildið er " + str(raunhitastig))
+	
+	currenttimi = time.time()
+
+    while(timi <= 30)
+      timi = time.time() - currenttimi
+      k = 3
+      e = oskgildi - temp_c
+      setFanSpeed(k * e)
+
+      print(e)
 
 	GPIO.cleanup()
 	print("FAN IS OFF")
