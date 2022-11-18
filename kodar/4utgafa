@@ -80,7 +80,7 @@ try:
 		temp_c = float(temp_string) / 1000.0
 		print(temp_c)
 		gildi10.append(temp_c)
-		time.sleep(2)
+		time.sleep(1)
 		teljari = teljari + 1
 
 	medaltal10 = sum(gildi10)/10
@@ -101,7 +101,7 @@ try:
 		temp_c = float(temp_string) / 1000.0
 		print(temp_c)
 		gildi90.append(temp_c)
-		time.sleep(2)
+		time.sleep(1)
 		teljari1 = teljari1 + 1
 
 	medaltal90 = sum(gildi90)/10
@@ -111,14 +111,14 @@ try:
 	print("Miðgildið er " + str(oskgildi))
 
 	setFanSpeed(50)
-	time.sleep(15)
+	time.sleep(60)
 
 	currenttimi = time.time()
 	timi = 0
 	while (timi <= 30):
 		timi = time.time() - currenttimi
 		print("timi = " + str(timi))
-		k = 20
+		k = 6
 		e = oskgildi - temp_c
 		setFanSpeed(k*e)
 		temp_string = read_temp_raw()
