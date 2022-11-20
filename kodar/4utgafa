@@ -18,7 +18,7 @@ FAN_GPIO_PIN = 20
 RELAY_FAN_GPIO_PIN = 26 # BCM pin used to turn RELAY for FAN ON/OFF
 RELAY_HEATER_FAN_GPIO_PIN = 16
 ##PWM_duty_cycle = 10
-PWM_FREQ = 125        # [Hz] 25kHz for PWM control
+PWM_FREQ = 1250        # [Hz] 25kHz for PWM control
 
 
 PWM_OFF = 0             # the PWM_duty_cycle 0%
@@ -73,7 +73,7 @@ try:
 	duty_cycle = 10
 	print("Duty cycle: " + str(duty_cycle) + "%")
 	setFanSpeed(duty_cycle)
-	time.sleep(30)
+	time.sleep(60)
 
 	while (teljari < 10):
 		temp_string = read_temp_raw()
@@ -94,7 +94,7 @@ try:
 	duty_cycle = 90
 	print("Duty cycle: " + str(duty_cycle) + "%")
 	setFanSpeed(duty_cycle)
-	time.sleep(30)
+	time.sleep(45)
 
 	while (teljari1 < 10):
 		temp_string = read_temp_raw()
@@ -110,17 +110,19 @@ try:
 	oskgildi = (medaltal10 + medaltal90)/2
 	print("Miðgildið er " + str(oskgildi))
 
-	setFanSpeed(50)
-	time.sleep(60)
+	setFanSpeed(40)
+	time.sleep(90)
 
+	k = 4
+	u_0 = 50
 	currenttimi = time.time()
 	timi = 0
 	while (timi <= 30):
 		timi = time.time() - currenttimi
 		print("timi = " + str(timi))
-		k = 6
+
 		e = oskgildi - temp_c
-		setFanSpeed(k*e)
+		setFanSpeed(u_0 - k*e)
 		temp_string = read_temp_raw()
 		temp_c = float(temp_string) / 1000.0
 		print(temp_c)
