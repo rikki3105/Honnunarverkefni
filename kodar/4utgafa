@@ -114,15 +114,19 @@ try:
 	time.sleep(90)
 
 	k = 4
-	u_0 = 50
+	u_0 = 40
 	currenttimi = time.time()
 	timi = 0
 	while (timi <= 30):
 		timi = time.time() - currenttimi
 		print("timi = " + str(timi))
-
 		e = oskgildi - temp_c
-		setFanSpeed(u_0 - k*e)
+		fanspeed = u_0 - k*e
+		if fanspeed < 0:
+			fanspeed = 0
+		elif fanspeed > 100:
+			fanspeed = 100
+		setFanSpeed(fanspeed)
 		temp_string = read_temp_raw()
 		temp_c = float(temp_string) / 1000.0
 		print(temp_c)
