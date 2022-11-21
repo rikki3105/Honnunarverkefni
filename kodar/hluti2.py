@@ -78,7 +78,7 @@ try:
 	temp_c = float(temp_string) / 1000.0
 	print("Hiti fyrir " + str(temp_c))
 
-	bil = (oskgildi - gildi90)/30
+	bil = (oskgildi - gildi90)/30 ##0,052967
 	u_0 = 40
 	currenttimi = time.time()
 	timi = 0
@@ -86,7 +86,7 @@ try:
 		timi = time.time() - currenttimi
 		print("timi = " + str(timi))
 		e = oskgildi - temp_c
-		oskgildi = oskgildi - bil * timi
+		oskgildi = oskgildi - bil
 		if (e < 0):
 			k = 6
 		elif (e > 0):
@@ -101,6 +101,31 @@ try:
 		temp_c = float(temp_string) / 1000.0
 		print(temp_c)
 
+	oskgildi1 = oskgildi
+	print("Lokaóskgildi: " + str(oskgildi1))
+
+##Reglum við óbreytt óskgildi í 30 sek
+
+	u_0 = 40
+	currenttimi = time.time()
+	timi = 0
+	while (timi <= 30):
+		timi = time.time() - currenttimi
+		print("timi = " + str(timi))
+		e = oskgildi - temp_c
+		if (e < 0):
+			k = 6
+		elif (e > 0):
+			k = 12
+		fanspeed = u_0 - k*e
+		if (fanspeed < 0):
+			fanspeed = 0
+		elif (fanspeed > 100):
+			fanspeed = 100
+		setFanSpeed(fanspeed)
+		temp_string = read_temp_raw()
+		temp_c = float(temp_string) / 1000.0
+		print(temp_c)
 
 	GPIO.cleanup()
 	print("FAN IS OFF")
