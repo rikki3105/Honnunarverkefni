@@ -113,7 +113,6 @@ try:
 	setFanSpeed(40)
 	time.sleep(90)
 
-	k = 4
 	u_0 = 40
 	currenttimi = time.time()
 	timi = 0
@@ -121,10 +120,14 @@ try:
 		timi = time.time() - currenttimi
 		print("timi = " + str(timi))
 		e = oskgildi - temp_c
+		if (e < 0):
+			k = 6
+		elif (e > 0):
+			k = 12
 		fanspeed = u_0 - k*e
-		if fanspeed < 0:
+		if (fanspeed < 0):
 			fanspeed = 0
-		elif fanspeed > 100:
+		elif (fanspeed > 100):
 			fanspeed = 100
 		setFanSpeed(fanspeed)
 		temp_string = read_temp_raw()
@@ -139,3 +142,5 @@ except KeyboardInterrupt:
 	setFanSpeed(FAN_OFF)
 
 	## finna meðaltal af mælingunum tíu
+
+
